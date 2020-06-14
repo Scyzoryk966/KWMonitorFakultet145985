@@ -19,12 +19,12 @@ namespace KWMonitor.Services
         }
         public async Task<List<District>> GetAll()
         {
-            return await _context.Districts.Include(c => c.Region).ToListAsync();
+            return await _context.Districts.Include(s => s.Region).ThenInclude(s => s.Country).ToListAsync();
         }
 
         public District GetById(int id)
         {
-            return _context.Districts.Include(r => r.Region).FirstOrDefault(r => r.Id == id);
+            return _context.Districts.Include(r => r.Region).ThenInclude(s => s.Country).FirstOrDefault(r => r.Id == id);
         }
 
         public async Task<bool> Update(District district)
