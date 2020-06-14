@@ -2,7 +2,7 @@
 
 namespace KWMonitor.Migrations
 {
-    public partial class Init : Migration
+    public partial class finalization : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,7 +46,7 @@ namespace KWMonitor.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    RegionId = table.Column<int>(nullable: true)
+                    RegionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,7 +56,7 @@ namespace KWMonitor.Migrations
                         column: x => x.RegionId,
                         principalTable: "Regions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,8 +65,8 @@ namespace KWMonitor.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: false),
-                    DistrictId = table.Column<int>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    DistrictId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,7 +76,7 @@ namespace KWMonitor.Migrations
                         column: x => x.DistrictId,
                         principalTable: "Districts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
