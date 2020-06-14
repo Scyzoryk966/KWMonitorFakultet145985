@@ -81,7 +81,7 @@ namespace KWMonitor.Controllers
                 });
             await _context.SaveChangesAsync();
             var response = _context.Regions.Include(r => r.Country).FirstOrDefault(r => r.Id == newRegion.Entity.Id);
-            return CreatedAtAction("GetRegion", new {id = response.Id}, response);
+            return CreatedAtAction($"GetRegion", new {id = response.Id}, response);
         }
 
         // DELETE: api/Regions/5

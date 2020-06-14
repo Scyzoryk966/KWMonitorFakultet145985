@@ -24,14 +24,14 @@ namespace KWMonitor.Controllers
             _districtServices = districtServices;
         }
 
-        // GET: api/District
+        // GET: api/Districts
         [HttpGet]
         public async Task<ActionResult<IEnumerable<District>>> GetDistricts()
         {
             return await _districtServices.GetAll();
         }
 
-        // GET: api/District/5
+        // GET: api/Districts/5
         [HttpGet("{id}")]
         public ActionResult<District> GetDistrict(int id)
         {
@@ -67,7 +67,7 @@ namespace KWMonitor.Controllers
             return NoContent();
         }
 
-        // POST: api/District
+        // POST: api/Districts
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
@@ -81,10 +81,10 @@ namespace KWMonitor.Controllers
                 });
             await _context.SaveChangesAsync();
             var response = _context.Districts.Include(r => r.Region).FirstOrDefault(r => r.Id == newDistrict.Entity.Id);
-            return CreatedAtAction("GetDistrict", new {id = response.Id}, response);
+            return CreatedAtAction($"GetDistrict", new {id = response.Id}, response);
         }
 
-        // DELETE: api/District/5
+        // DELETE: api/Districts/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<District>> DeleteDistrict(int id)
         {

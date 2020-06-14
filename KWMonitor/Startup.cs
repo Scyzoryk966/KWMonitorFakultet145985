@@ -30,6 +30,8 @@ namespace KWMonitor
             services.AddTransient<KWMContext, KWMContext>();
             services.AddTransient<ICountriesService, CountriesService>();
             services.AddTransient<IRegionServices, RegionServices>();
+            services.AddTransient<IDistrictServices, DistrictServices>();
+            services.AddTransient<ICityServices, CityServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
